@@ -10,33 +10,31 @@ var Container = React.createClass({
       TOPIC_LIST: []
     };
   },
-
   componentDidMount: function() {
     var $this = this;
     this.make_responsive();
-    $('.meetup-record_holder').on('scroll', function() {
-      if ( $(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+    $('.meetup-record-holder').on('scroll', function() {
+      if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
         var stream_on = REQUEST.PAGINATION($this.state.CITY_LIST, $this.state.TOPIC_LIST);
-        stream_on.done( function(res) {
+        stream_on.done(function(res) {
           $this.on_get_data(res, true);
         }).fail('error', function(err) {});
       }
     });
   },
-
   make_responsive: function() {
     function size_set() {
       var window_height = $(window).height() - 15;
-      $('meetup-record_holder').css('height', window_height);
-    }
+      $('.meetup-record-holder').css('height', window_height);
+    };
     size_set();
-    $(window).resize( function() {
-      size_set()
+    $(window).resize(function() {
+      size_set();
     });
   },
-
   on_get_data: function(res, append) {
     var $this = this;
+    //responseStream.stop();
     if (res.hasOwnProperty('hits')) {
       var record_array = res.hits.hits;
       if (append) {
@@ -59,19 +57,18 @@ var Container = React.createClass({
       });
     }
   },
-
   set_list: function(method, list) {
-    if (method == 'city') {
+    if(method == 'city') {
       this.setState({
         CITY_LIST: list
       });
-    } else {
+    }
+    else {
       this.setState({
         TOPIC_LIST: list
       });
     }
   },
-
   render: function() {
     var $this = this;
     return (
@@ -80,7 +77,8 @@ var Container = React.createClass({
                          on_get_data={this.on_get_data}
                          CITY_LIST={this.state.CITY_LIST}
                          TOPIC_LIST={this.state.TOPIC_LIST}
-                         set_list={this.set_list}>
+                         set_list={this.set_list}
+        >
         </FilterContainer>
         <div className="meetup-record-holder" id="meetup-record-holder">
           <div className="container full_row" id="record-container">
@@ -96,8 +94,8 @@ var Container = React.createClass({
                   group_city={single_user.group.group_city}
                   group_topics={single_user.group.group_topics}
                   event_url={single_user.event.event_url}
-                  TOPIC_LIST={$this.state.TOPIC_LIST}>
-                </User>
+                  TOPIC_LIST={$this.state.TOPIC_LIST}
+                ></User>
               );
             })}
           </div>

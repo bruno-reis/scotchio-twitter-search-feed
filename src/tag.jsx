@@ -1,5 +1,4 @@
 var React = require('react');
-
 var Tag = React.createClass({
   getInitialState: function() {
     return {
@@ -31,7 +30,6 @@ var Tag = React.createClass({
       $this.props.set_list(type, list);
     }
   },
-
   //create city or topic list items
   CREATE_TAG: function(type, data) {
     $this = this;
@@ -53,7 +51,6 @@ var Tag = React.createClass({
     });
     return single_tag;
   },
-
   set_filter_list: function(method, list) {
     var $this = this;
     $('.' + method + '_search').typeahead({
@@ -78,7 +75,6 @@ var Tag = React.createClass({
       $('.' + method + '_search').typeahead('val', '').focus();
     }, 1000);
   },
-
   componentWillMount: function() {
     var $this = this;
     var method = this.props.type;
@@ -91,7 +87,6 @@ var Tag = React.createClass({
       $this.set_filter_list(method, city_list);
     });
   },
-  
   render: function() {
     var method = this.props.type + '_search col-xs-12';
     var inside_container = this.props.type + "_container block col-xs-12";

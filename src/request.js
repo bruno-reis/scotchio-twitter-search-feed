@@ -131,13 +131,12 @@ meetup_request.prototype = {
     var streaming = this.GET_STREAMING_CLIENT();
     var search_payload = this.GET_PAYLOAD(CITY_LIST, TOPIC_LIST);
     delete search_payload.stream;
+    // console.log(JSON.stringify(search_payload));
+    // $('#record-container').html('');
+    //
+    // console.log("reinstantiating...");
+    // console.log(search_payload);
     return streaming.search(search_payload);
-
-    console.log(JSON.stringify(search_payload));
-    $('#record-container').html('');
-
-    console.log("reinstantiating...");
-    console.log(search_payload);
   },
   //Start stream
   STREAM_START: function(CITY_LIST, TOPIC_LIST) {
@@ -182,4 +181,4 @@ meetup_request.prototype = {
       callback(res);
     });
   }
-}
+};
