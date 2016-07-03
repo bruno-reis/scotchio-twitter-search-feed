@@ -1,9 +1,9 @@
 var React = require('react');
-var FilerContainer = require('./filterContainer');
-var User = require('./user');
+var FilterContainer = require('./filterContainer.jsx');
+var User = require('./user.jsx');
 
 var Container = React.createClass({
-  getInitialState: function () {
+  getInitialState: function() {
     return {
       users: [],
       CITY_LIST: [],
@@ -11,7 +11,7 @@ var Container = React.createClass({
     };
   },
 
-  componentDidMount: function () {
+  componentDidMount: function() {
     var $this = this;
     this.make_responsive();
     $('.meetup-record_holder').on('scroll', function() {
@@ -35,7 +35,7 @@ var Container = React.createClass({
     });
   },
 
-  on_get_data: function (res, append) {
+  on_get_data: function(res, append) {
     var $this = this;
     if (res.hasOwnProperty('hits')) {
       var record_array = res.hits.hits;
@@ -60,7 +60,7 @@ var Container = React.createClass({
     }
   },
 
-  set_list: function (method, list) {
+  set_list: function(method, list) {
     if (method == 'city') {
       this.setState({
         CITY_LIST: list
@@ -72,7 +72,7 @@ var Container = React.createClass({
     }
   },
 
-  render: function () {
+  render: function() {
     var $this = this;
     return (
       <div className="row meetup-container">
@@ -80,8 +80,7 @@ var Container = React.createClass({
                          on_get_data={this.on_get_data}
                          CITY_LIST={this.state.CITY_LIST}
                          TOPIC_LIST={this.state.TOPIC_LIST}
-                         set_list={this.set_list}
-        >
+                         set_list={this.set_list}>
         </FilterContainer>
         <div className="meetup-record-holder" id="meetup-record-holder">
           <div className="container full_row" id="record-container">
@@ -97,8 +96,8 @@ var Container = React.createClass({
                   group_city={single_user.group.group_city}
                   group_topics={single_user.group.group_topics}
                   event_url={single_user.event.event_url}
-                  TOPIC_LIST={$this.state.TOPIC_LIST}
-                ></User>
+                  TOPIC_LIST={$this.state.TOPIC_LIST}>
+                </User>
               );
             })}
           </div>

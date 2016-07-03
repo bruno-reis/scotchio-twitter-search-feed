@@ -1,8 +1,8 @@
 var React = require('react');
-var ReactDOM = require('react-DOM');
-var Container = require('./container');
+var ReactDOM = require('react-dom');
+var Container = require('./container.jsx');
 
-reactDOM.render(
+ReactDOM.render(
   <div>
     <Container></Container>
   </div>
